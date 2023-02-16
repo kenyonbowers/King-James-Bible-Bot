@@ -61,13 +61,18 @@ class Client(discord.Client):
             else:
                 BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], verse[3]))
         for Json in BibleJson:
-            desc = ""
-            for v in Json["verses"]:
-                desc += "<**"+str(v["verse"])+"**> "+v["text"].strip()+" "
-            embed = discord.Embed(title=":closed_book: ** "+Json["reference"]+" **", description=desc, color=10450525)
-            await message.channel.send(embed=embed)
+            if "text" in Json:
+                desc = ""
+                for v in Json["verses"]:
+                    desc += "<**"+str(v["verse"])+"**> "+v["text"].strip().replace("\n", " ")+" "
+                desc = (desc[:4093] + '...') if len(desc) > 4093 else desc
+                embed = discord.Embed(title=":closed_book: ** "+Json["reference"]+" **", description=desc, color=10450525)
+                await message.channel.send(embed=embed)
+            else:
+                embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse.", color=16711680)
+                await message.channel.send(embed=embed)
 
 intents = discord.Intents.default()
 intents.message_content = True
 client = Client(intents=intents, description="This bot will recite any verse from the KJV", command_prefix="/", pm_help = True)
-client.run('MTA3NTU0MzgzMzk0MjY5NTk4Ng.GJ8m33.tuSbIy_N13k0AvLQ_Gap04nQzE4Km5zcp2nuQ4')
+client.run('Add_Token_Here')
