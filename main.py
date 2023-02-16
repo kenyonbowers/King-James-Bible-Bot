@@ -70,4 +70,4 @@ class Client(discord.Client):
 intents = discord.Intents.default()
 intents.message_content = True
 client = Client(intents=intents, description="This bot will recite any verse from the KJV", command_prefix="/", pm_help = True)
-client.run('MTA3NTU0MzgzMzk0MjY5NTk4Ng.GJ8m33.tuSbIy_N13k0AvLQ_Gap04nQzE4Km5zcp2nuQ4')
+client.run('Add_Token_Here')
