@@ -73,7 +73,7 @@ async def on_message(message):
                 for v in Json["verses"]:
                     desc += "<**"+str(v["verse"])+"**> "+v["text"].strip().replace("\n", " ")+" "
                 desc = (desc[:4093] + '...') if len(desc) > 4093 else desc
-                embed = discord.Embed(title=":closed_book: ** "+Json["reference"]+" **", description=desc, color=10450525)
+                embed = discord.Embed(title=":book: ** "+Json["reference"]+" **", description=desc, color=10450525)
                 await message.channel.send(embed=embed)
             else:
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse.", color=16711680)
