@@ -1,5 +1,9 @@
 import discord, requests, json, re
 
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+
 def Find_Bible_References(text):
     books = {"Genesis": ["gen", "ge", "gn"], "Exodus": ["exo", "ex"], "Leviticus": ["lev", "le"],
              "Numbers": ["num", "nu"], "Deuteronomy": ["deut", "dt"], "Joshua": ["josh", "jsh"], "Judges": ["judg", "jdg"],
@@ -48,12 +52,14 @@ def Get_Passage(book, chapter, start_verse, end_verse):
     JSON = json.loads(JSON.text)
     return JSON
 
-class Client(discord.Client):
-    async def on_ready(self):
-        print(f'Logged in as {self.user}!')
-        return await client.change_presence(activity=discord.Game(name='Something'))
-    
-    async def on_message(self, message):
+@client.event
+async def on_ready():
+    print(f'Logged in as {client.user}!')
+    return await client.change_presence(activity=discord.Game(name='Something'))
+
+@client.event
+async def on_message(message):
+    if message.channel.permissions_for(message.guild.me).send_messages or message.channel.permissions_for(message.guild.me).administrator:
         BibleJson = []
         BibleVerses = Find_Bible_References(message.content)
         for verse in BibleVerses:
@@ -71,9 +77,6 @@ class Client(discord.Client):
                 await message.channel.send(embed=embed)
             else:
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse.", color=16711680)
-                await message.channel.send(embed=embed)
+                await message.channel.send(embed=embed)        
 
-intents = discord.Intents.default()
-intents.message_content = True
-client = Client(intents=intents, description="This bot will recite any verse from the KJV", command_prefix="/", pm_help = True)
 client.run('Add_Token_Here')
