@@ -21,11 +21,12 @@ def Find_Bible_References(text):
              "2 Peter": ["2pet", "2 peter"], "1 John": ["1jn", "1 john"], "2 John": ["2jn", "2 john"],
              "3 John": ["3jn", "3 john"], "Jude": ["jude"], "Revelation": ["rev"]}
 
-    pattern = r"("
+    pattern = r"\b("
     pattern += "|".join(books.keys())
     pattern += r"|"
     pattern += "|".join([abbr for abbrs in books.values() for abbr in abbrs])
-    pattern += r")\s+(\d+)(?::(\d+))?(?:-(\d+))?"
+    pattern += r")\s+(\d+)(?::(\d+))?(?:-(\d+))?\b"
+
 
     regex = re.compile(pattern, re.IGNORECASE)
     matches = regex.findall(text)
