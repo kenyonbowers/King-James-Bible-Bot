@@ -63,10 +63,10 @@ async def on_message(message):
         BibleJson = []
         BibleVerses = Find_Bible_References(message.content)
         for verse in BibleVerses:
-            if(verse[3] == None):
-                BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], 0))
-            else:
+            if verse[1] is not None and verse[2] is not None and verse[3] is not None:
                 BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], verse[3]))
+            elif verse[1] is not None and verse[2] is not None and verse[3] is None:
+                BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], 0))
         for Json in BibleJson:
             if "text" in Json:
                 desc = ""
@@ -77,6 +77,6 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse.", color=16711680)
-                await message.channel.send(embed=embed)        
+                await message.channel.send(embed=embed)  
 
 client.run('Add_Token_Here')
