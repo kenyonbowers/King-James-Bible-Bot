@@ -71,7 +71,7 @@ async def on_message(message):
             if "text" in Json:
                 desc = ""
                 for v in Json["verses"]:
-                    desc += "<**"+str(v["verse"])+"**> "+v["text"].strip().replace("\n", " ")+" "
+                    desc += "<**"+str(v["verse"])+"**> "+v["text"].replace("\n", " ").replace("  ", " ").strip()+" "
                 desc = (desc[:4093] + '...') if len(desc) > 4093 else desc
                 embed = discord.Embed(title=":book: ** "+Json["reference"]+" **", description=desc, color=10450525)
                 await message.channel.send(embed=embed)
