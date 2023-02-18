@@ -10,7 +10,7 @@ def Find_Bible_References(text):
              "Ruth": ["rut", "rt"], "1 Samuel": ["1sam", "1 sm", "1samuel"], "2 Samuel": ["2sam", "2 sm", "2samuel"],
              "1 Kings": ["1kgs", "1 ki", "1kings"], "2 Kings": ["2kgs", "2 ki", "2kings"], "1 Chronicles": ["1chr", "1 ch", "1chronicles"],
              "2 Chronicles": ["2chr", "2 ch", "2chronicles"], "Ezra": ["ezr"], "Nehemiah": ["neh", "ne"],
-             "Esther": ["est", "et"], "Job": ["job", "jb"], "Psalms": ["ps", "psa"], "Proverbs": ["prov", "pro"],
+             "Esther": ["est", "et"], "Job": ["job", "jb"], "Psalms": ["ps", "psa", "psalm"], "Proverbs": ["prov", "pro"],
              "Ecclesiastes": ["eccles", "ecc"], "Song of Solomon": ["sos"], "Isaiah": ["isa", "is"],
              "Jeremiah": ["jer", "je"], "Lamentations": ["lam", "la"], "Ezekiel": ["ezek", "ezk"], "Daniel": ["dan", "dn"],
              "Hosea": ["hos", "ho"], "Joel": ["joel", "jl"], "Amos": ["amos", "am"], "Obadiah": ["obad", "ob"],
