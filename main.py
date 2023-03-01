@@ -42,6 +42,8 @@ def Find_Bible_References(text):
     return references
 
 def Get_Passage(book, chapter, start_verse, end_verse):
+    if end_verse is not 0 and start_verse > end_verse:
+        return None
     url = "https://bible-api.com/"
     if end_verse == 0:
         url += book+"%20"+str(chapter)+":"+str(start_verse)
@@ -68,7 +70,7 @@ async def on_message(message):
             elif verse[1] is not None and verse[2] is not None and verse[3] is None:
                 BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], 0))
         for Json in BibleJson:
-            if "text" in Json:
+            if Json is not None and "text" in Json:
                 desc = ""
                 for v in Json["verses"]:
                     desc += "<**"+str(v["verse"])+"**> "+v["text"].replace("\n", " ").replace("  ", " ").strip()+" "
