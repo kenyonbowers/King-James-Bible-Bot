@@ -78,7 +78,7 @@ async def on_message(message):
                 embed = discord.Embed(title=":book: ** "+Json["reference"]+" **", description=desc, color=10450525)
                 await message.channel.send(embed=embed)
             else:
-                embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse.", color=16711680)
+                embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse(s).", color=16711680)
                 await message.channel.send(embed=embed)  
 
 client.run('Add_Token_Here')
