@@ -42,7 +42,7 @@ def Find_Bible_References(text):
     return references
 
 def Get_Passage(book, chapter, start_verse, end_verse):
-    if end_verse is not 0 and start_verse > end_verse:
+    if end_verse != 0 and start_verse > end_verse:
         return None
     url = "https://bible-api.com/"
     if end_verse == 0:
@@ -54,10 +54,20 @@ def Get_Passage(book, chapter, start_verse, end_verse):
     JSON = json.loads(JSON.text)
     return JSON
 
+# Events
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}!')
-    return await client.change_presence(activity=discord.Game(name='Something'))
+    return await client.change_presence(activity=discord.Game(name='Add Verse Reference to Your Message'))
+
+@client.event
+async def on_guild_join(guild):
+    textChannels = guild.text_channels
+    for channel in textChannels:
+        if channel.permissions_for(guild.me).send_messages or channel.permissions_for(guild.me).administrator:
+            embed = discord.Embed(title="Thank you for adding this bot!", description="Thank you for choosing the King James Bible. To use this bot, add a verse reference to your message. For example, John 3:16 or John 3:16-17.")
+            await channel.send(embed=embed)
+            break
 
 @client.event
 async def on_message(message):
@@ -70,7 +80,7 @@ async def on_message(message):
             elif verse[1] is not None and verse[2] is not None and verse[3] is None:
                 BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], 0))
         for Json in BibleJson:
-            if Json is not None and "text" in Json:
+            if Json != None and "text" in Json:
                 desc = ""
                 for v in Json["verses"]:
                     desc += "<**"+str(v["verse"])+"**> "+v["text"].replace("\n", " ").replace("  ", " ").strip()+" "
@@ -79,6 +89,6 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse(s).", color=16711680)
-                await message.channel.send(embed=embed)  
+                await message.channel.send(embed=embed)
 
 client.run('Add_Token_Here')
