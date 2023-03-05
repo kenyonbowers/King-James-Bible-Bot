@@ -42,17 +42,20 @@ def Find_Bible_References(text):
     return references
 
 def Get_Passage(book, chapter, start_verse, end_verse):
-    if end_verse != 0 and start_verse > end_verse:
+    if start_verse > end_verse:
         return None
-    url = "https://bible-api.com/"
-    if end_verse == 0:
-        url += book+"%20"+str(chapter)+":"+str(start_verse)
-    else:
-        url += book+"%20"+str(chapter)+":"+str(start_verse)+"-"+str(end_verse)
-    url += "?translation=kjv"
-    JSON = requests.get(url)
-    JSON = json.loads(JSON.text)
-    return JSON
+    path = "./Bible/"+book+"/"+str(chapter)+".json"
+    
+    with open(path) as file: 
+        JSON = json.load(file)
+        
+    versesRef = str(start_verse)
+    if end_verse != start_verse:
+        versesRef += "-"+str(end_verse)
+    return { "book_name": book, "chapter": chapter, "verses_ref": versesRef, "verses": list(filter(lambda x: Filter_Verses(x, start_verse, end_verse), JSON["verses"])) }
+
+def Filter_Verses(verse, start_verse, end_verse):
+    return verse["verse"] >= start_verse and verse["verse"] <= end_verse
 
 # Events
 @client.event
@@ -78,17 +81,18 @@ async def on_message(message):
             if verse[1] is not None and verse[2] is not None and verse[3] is not None:
                 BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], verse[3]))
             elif verse[1] is not None and verse[2] is not None and verse[3] is None:
-                BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], 0))
-        for Json in BibleJson:
-            if Json != None and "text" in Json:
+                BibleJson.append(Get_Passage(verse[0], verse[1], verse[2], verse[2]))
+        for Verses in BibleJson:
+            if Verses != None and "verses" in Verses:
+                header = ":book: **"+Verses["book_name"]+" "+str(Verses["chapter"])+":"+Verses["verses_ref"]+"**"
                 desc = ""
-                for v in Json["verses"]:
+                for v in Verses["verses"]:
                     desc += "<**"+str(v["verse"])+"**> "+v["text"].replace("\n", " ").replace("  ", " ").strip()+" "
                 desc = (desc[:4093] + '...') if len(desc) > 4093 else desc
-                embed = discord.Embed(title=":book: ** "+Json["reference"]+" **", description=desc, color=10450525)
+                embed = discord.Embed(title=header, description=desc, color=10450525)
                 await message.channel.send(embed=embed)
             else:
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse(s).", color=16711680)
                 await message.channel.send(embed=embed)
 
-client.run('Add_Token_Here')
+client.run('MTA3NTU0MzgzMzk0MjY5NTk4Ng.GwR4UF.QgpTtA3ajG2opKrDOw8khy8rsZZXyWIeHRCAA0')
