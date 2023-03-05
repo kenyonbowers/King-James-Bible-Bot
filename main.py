@@ -58,7 +58,7 @@ def Get_Passage(book, chapter, start_verse, end_verse):
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}!')
-    return await client.change_presence(activity=discord.Game(name='Add Verse Reference to Your Message'))
+    return await client.change_presence(activity=discord.Activity(name='Bible Pages Turn', type=discord.ActivityType.watching))
 
 @client.event
 async def on_guild_join(guild):
