@@ -95,4 +95,4 @@ async def on_message(message):
                 embed = discord.Embed(title="There was an Error.", description="There was an error when getting the verse(s).", color=16711680)
                 await message.channel.send(embed=embed)
 
-client.run('MTA3NTU0MzgzMzk0MjY5NTk4Ng.GwR4UF.QgpTtA3ajG2opKrDOw8khy8rsZZXyWIeHRCAA0')
+client.run('Add_Token_Here')
