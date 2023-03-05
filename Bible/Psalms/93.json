@@ -1,32 +1,36 @@
-[
-  {
-    "book_name": "Psalms",
-    "chapter": 93,
-    "verse": 1,
-    "text": "The LORD reigneth, he is clothed with majesty; the LORD is clothed with strength, *wherewith* he hath girded himself: the world also is stablished, that it cannot be moved."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 93,
-    "verse": 2,
-    "text": "Thy throne *is* established of old: thou *art* from everlasting."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 93,
-    "verse": 3,
-    "text": "The floods have lifted up, O LORD, the floods have lifted up their voice; the floods lift up their waves."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 93,
-    "verse": 4,
-    "text": "The LORD on high *is* mightier than the noise of many waters, *yea, than* the mighty waves of the sea."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 93,
-    "verse": 5,
-    "text": "Thy testimonies are very sure: holiness becometh thine house, O LORD, for ever."
-  }
-]
+{
+  "book_name": "Psalms",
+  "chapter": 93,
+  "verses": [
+    {
+      "book_name": "Psalms",
+      "chapter": 93,
+      "verse": 1,
+      "text": "The LORD reigneth, he is clothed with majesty; the LORD is clothed with strength, *wherewith* he hath girded himself: the world also is stablished, that it cannot be moved."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 93,
+      "verse": 2,
+      "text": "Thy throne *is* established of old: thou *art* from everlasting."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 93,
+      "verse": 3,
+      "text": "The floods have lifted up, O LORD, the floods have lifted up their voice; the floods lift up their waves."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 93,
+      "verse": 4,
+      "text": "The LORD on high *is* mightier than the noise of many waters, *yea, than* the mighty waves of the sea."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 93,
+      "verse": 5,
+      "text": "Thy testimonies are very sure: holiness becometh thine house, O LORD, for ever."
+    }
+  ]
+}

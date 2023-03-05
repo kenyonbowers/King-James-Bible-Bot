@@ -1,56 +1,60 @@
-[
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 1,
-    "text": "The LORD reigneth; let the people tremble: he sitteth *between* the cherubims; let the earth be moved."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 2,
-    "text": "The LORD *is* great in Zion; and he *is* high above all the people."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 3,
-    "text": "Let them praise thy great and terrible name; *for* it *is* holy."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 4,
-    "text": "The king's strength also loveth judgment; thou dost establish equity, thou executest judgment and righteousness in Jacob."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 5,
-    "text": "Exalt ye the LORD our God, and worship at his footstool; *for* he *is* holy."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 6,
-    "text": "Moses and Aaron among his priests, and Samuel among them that call upon his name; they called upon the LORD, and he answered them."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 7,
-    "text": "He spake unto them in the cloudy pillar: they kept his testimonies, and the ordinance *that* he gave them."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 8,
-    "text": "Thou answeredst them, O LORD our God: thou wast a God that forgavest them, though thou tookest vengeance of their inventions."
-  },
-  {
-    "book_name": "Psalms",
-    "chapter": 99,
-    "verse": 9,
-    "text": "Exalt the LORD our God, and worship at his holy hill; for the LORD our God *is* holy."
-  }
-]
+{
+  "book_name": "Psalms",
+  "chapter": 99,
+  "verses": [
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 1,
+      "text": "The LORD reigneth; let the people tremble: he sitteth *between* the cherubims; let the earth be moved."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 2,
+      "text": "The LORD *is* great in Zion; and he *is* high above all the people."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 3,
+      "text": "Let them praise thy great and terrible name; *for* it *is* holy."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 4,
+      "text": "The king's strength also loveth judgment; thou dost establish equity, thou executest judgment and righteousness in Jacob."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 5,
+      "text": "Exalt ye the LORD our God, and worship at his footstool; *for* he *is* holy."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 6,
+      "text": "Moses and Aaron among his priests, and Samuel among them that call upon his name; they called upon the LORD, and he answered them."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 7,
+      "text": "He spake unto them in the cloudy pillar: they kept his testimonies, and the ordinance *that* he gave them."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 8,
+      "text": "Thou answeredst them, O LORD our God: thou wast a God that forgavest them, though thou tookest vengeance of their inventions."
+    },
+    {
+      "book_name": "Psalms",
+      "chapter": 99,
+      "verse": 9,
+      "text": "Exalt the LORD our God, and worship at his holy hill; for the LORD our God *is* holy."
+    }
+  ]
+}
