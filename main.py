@@ -42,17 +42,23 @@ def Find_Bible_References(text):
     return references
 
 def Get_Passage(book, chapter, start_verse, end_verse):
-    if start_verse > end_verse:
+    if (start_verse != 0 or end_verse != 0) and start_verse > end_verse:
         return None
     path = "./Bible/"+book+"/"+str(chapter)+".json"
     
     with open(path) as file: 
         JSON = json.load(file)
+
+    verses = list(filter(lambda x: Filter_Verses(x, start_verse, end_verse), JSON["verses"]))
         
-    versesRef = str(start_verse)
-    if end_verse != start_verse:
-        versesRef += "-"+str(end_verse)
-    return { "book_name": book, "chapter": chapter, "verses_ref": versesRef, "verses": list(filter(lambda x: Filter_Verses(x, start_verse, end_verse), JSON["verses"])) }
+    if len(verses) != 0:
+        versesRef = str(verses[0]["verse"])
+        if verses[0]["verse"] != verses[len(verses)-1]["verse"]:
+            versesRef += "-"+str(end_verse)
+    else:
+        return None
+
+    return { "book_name": book, "chapter": chapter, "verses_ref": versesRef, "verses": verses }
 
 def Filter_Verses(verse, start_verse, end_verse):
     return verse["verse"] >= start_verse and verse["verse"] <= end_verse
