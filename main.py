@@ -7,9 +7,9 @@ client = discord.Client(intents=intents)
 def Find_Bible_References(text):
     books = {"Genesis": ["gen", "ge", "gn"], "Exodus": ["exo", "ex"], "Leviticus": ["lev", "le"],
              "Numbers": ["num", "nu"], "Deuteronomy": ["deut", "dt"], "Joshua": ["josh", "jsh"], "Judges": ["judg", "jdg"],
-             "Ruth": ["rut", "rt"], "1 Samuel": ["1sam", "1 sm", "1samuel"], "2 Samuel": ["2sam", "2 sm", "2samuel"],
-             "1 Kings": ["1kgs", "1 ki", "1kings"], "2 Kings": ["2kgs", "2 ki", "2kings"], "1 Chronicles": ["1chr", "1 ch", "1chronicles"],
-             "2 Chronicles": ["2chr", "2 ch", "2chronicles"], "Ezra": ["ezr"], "Nehemiah": ["neh", "ne"],
+             "Ruth": ["rut", "rt"], "1 Samuel": ["1sam", "1 sm", "1 sam", "1samuel"], "2 Samuel": ["2sam", "2 sm", "2 sam", "2samuel"],
+             "1 Kings": ["1kgs", "1 ki", "1kings"], "2 Kings": ["2kgs", "2 ki", "2kings"], "1 Chronicles": ["1chr", "1 ch", "1 chr", "1chronicles"],
+             "2 Chronicles": ["2chr", "2 ch", "2 chr", "2chronicles"], "Ezra": ["ezr"], "Nehemiah": ["neh", "ne"],
              "Esther": ["est", "et"], "Job": ["job", "jb"], "Psalms": ["ps", "psa", "psalm"], "Proverbs": ["prov", "pro"],
              "Ecclesiastes": ["eccles", "ecc"], "Song of Solomon": ["sos"], "Isaiah": ["isa", "is"],
              "Jeremiah": ["jer", "je"], "Lamentations": ["lam", "la"], "Ezekiel": ["ezek", "ezk"], "Daniel": ["dan", "dn"],
@@ -17,13 +17,13 @@ def Find_Bible_References(text):
              "Jonah": ["jonah", "jn"], "Micah": ["micah", "mic"], "Nahum": ["nah", "na"], "Habakkuk": ["hab", "hk"],
              "Zephaniah": ["zeph", "zp"], "Haggai": ["hag", "hg"], "Zechariah": ["zech", "zc"], "Malachi": ["mal", "ml"],
              "Matthew": ["mt", "matt"], "Mark": ["mk", "mar"], "Luke": ["lk", "luk"], "John": ["jn", "jhn"], "Acts": ["acts"],
-             "Romans": ["rom"], "1 Corinthians": ["1cor", "1 corinthians"], "2 Corinthians": ["2cor", "2 corinthians"],
+             "Romans": ["rom"], "1 Corinthians": ["1cor", "1 cor", "1 corinthians"], "2 Corinthians": ["2cor", "2 cor", "2 corinthians"],
              "Galatians": ["gal"], "Ephesians": ["eph"], "Philippians": ["php"], "Colossians": ["col"],
-             "1 Thessalonians": ["1thess", "1 thessalonians"], "2 Thessalonians": ["2thess", "2 thessalonians"],
-             "1 Timothy": ["1tim", "1 timothy"], "2 Timothy": ["2tim", "2 timothy"], "Titus": ["titus"],
-             "Philemon": ["phlm", "philem"], "Hebrews": ["heb"], "James": ["jas", "jam"], "1 Peter": ["1pet", "1 peter"],
-             "2 Peter": ["2pet", "2 peter"], "1 John": ["1jn", "1 john"], "2 John": ["2jn", "2 john"],
-             "3 John": ["3jn", "3 john"], "Jude": ["jude"], "Revelation": ["rev"]}
+             "1 Thessalonians": ["1thess", "1 thes", "1 thess", "1 thessalonians"], "2 Thessalonians": ["2thess", "2 thes", "2 thess", "2 thessalonians"],
+             "1 Timothy": ["1tim", "1 tim", "1 timothy"], "2 Timothy": ["2tim", "2 tim", "2 timothy"], "Titus": ["titus"],
+             "Philemon": ["phlm", "philem"], "Hebrews": ["heb"], "James": ["jas", "jam"], "1 Peter": ["1pet", "1 pe", "1 peter"],
+             "2 Peter": ["2pet", "2 pe", "2 peter"], "1 John": ["1jn", "1 jhn", "1 john"], "2 John": ["2jn", "2 jhn", "2 john"],
+             "3 John": ["3jn", "3 jhn", "3 john"], "Jude": ["jude"], "Revelation": ["rev"]}
 
     pattern = r"\b("
     pattern += "|".join(books.keys())
@@ -42,22 +42,22 @@ def Find_Bible_References(text):
     return references
 
 def Get_Passage(book, chapter, start_verse, end_verse):
-    if (start_verse != 0 or end_verse != 0) and start_verse > end_verse:
+    if (start_verse == 0 or end_verse == 0) and start_verse > end_verse:
         return None
     path = "./Bible/"+book+"/"+str(chapter)+".json"
     
     with open(path) as file: 
         JSON = json.load(file)
-
-    verses = list(filter(lambda x: Filter_Verses(x, start_verse, end_verse), JSON["verses"]))
         
+    verses = list(filter(lambda x: Filter_Verses(x, start_verse, end_verse), JSON["verses"]))
+    
     if len(verses) != 0:
         versesRef = str(verses[0]["verse"])
         if verses[0]["verse"] != verses[len(verses)-1]["verse"]:
-            versesRef += "-"+str(end_verse)
+            versesRef += "-"+str(verses[len(verses)-1]["verse"])
     else:
         return None
-
+    
     return { "book_name": book, "chapter": chapter, "verses_ref": versesRef, "verses": verses }
 
 def Filter_Verses(verse, start_verse, end_verse):
